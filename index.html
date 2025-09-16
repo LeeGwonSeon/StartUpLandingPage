@@ -4,23 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusApp - 차세대 협업 플랫폼</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/responsive.css">
+    
+    <!-- SEO 최적화 -->
+     <meta name="description" content="NexusApp - AI 기반 차세대 협업 플랫폼으로 팀의 생산성을 혁신하세요">
+     <meta name="keywords" content="협업, 생산성, 팀워크, 앱, AI, 스타트업">
+     <meta name="author" content="NexusApp Team">
+
+    <!-- Open Graph -->
+     <meta property="og:title" content="NexusApp - 차세대 협업 플랫폼">
+     <meta property="og:description" content="AI 기반 스마트 협업 도구로 더 빠르고 효율적인 업무 환경을 만들어보세요">
+     <meta property="og:type" content="website">
+     <meta property="og:url" content="https://nexusapp.com">
+     <meta property="og:image" content="./images/og-image.jpg">
+
+    <!-- Twitter Card -->
+     <meta name="twitter:card" content="summary_large_image">
+     <meta name="twitter:title" content="NexusApp - 차세대 협업 플랫폼">
+     <meta name="twitter:description" content="AI 기반 스마트 협업 도구로 더 빠르고 효율적인 업무 환경을 만들어보세요">
+     <meta name="twitter:image" content="./images/twitter-image.jpg">
+
+    <!-- Favicon -->
+     <link rel="icon" type="image/X-icon" href="./images/favicon.ico">
+     <link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
+
+    <!-- External Resources -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="preconnect" href="https://fontw.googleapis.com">
+     <link rel="preconnect" href="https://fontw.gstatic.com" crossorigin>
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap">
+
+     <!-- CSS Files -->
+      <link rel="stylesheet" href="./styles/main.css">
+      <link rel="stylesheet" href="./styles/components.css">
+      <link rel="stylesheet" href="./styles/responsive.css">
 </head>
 <body>
     <!-- 네비게이션 -->
-     <nav class="navbar">
+     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo">NexusApp</div>
+            <div class="logo">
+                <a href="#home">NexusApp</a>
+            </div>
             <ul class="nav-links">
                 <li><a href="#home">홈</a></li>
                 <li><a href="#features">기능</a></li>
                 <li><a href="#screenshots">스크린샷</a></li>
-                <li><a href="#home">팀</a></li>
-                <li><a href="#home">연락처</a></li>
+                <li><a href="#team">팀</a></li>
+                <li><a href="#contact">연락처</a></li>
             </ul>
-            <a href="#download" class="cta-button">다운로드</a>
+            <div>
+                <a href="#download" class="cta-button">다운로드</a>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
      </nav>
 
