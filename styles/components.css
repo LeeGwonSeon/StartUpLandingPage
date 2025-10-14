@@ -457,3 +457,220 @@
     color: var(--accent-color);
     font-size: 1.2rem;
 }
+
+/* Team Section */
+.team-section {
+    background: var(--gradient-light);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
+    padding: 2rem;
+    text-align: center;
+    transition: all var(--transition);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-2xl);
+}
+
+.team-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    transition: all 0.3s ease;
+}
+
+.team-avatar::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: conic-gradient(from 0deg, #6366f1, #ec4899, #6366f1);
+    border-radius: 50%;
+    z-index: -1;
+    animation: rotate-border 3s linear infinite;
+}
+
+.team-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.team-card h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.team-card .role {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.team-card p {
+    margin-bottom: 1.5rem;
+}
+
+.team-card .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.team-card .social-links a {
+    width: 40px;
+    height: 40px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all var(--transition);
+}
+
+.team-card .social-links a:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* CTA Section */
+.cta-section {
+    background: var(--gradient);
+    border-radius: var(--radius-2xl);
+    margin: 6rem 0;
+    text-align: center;
+}
+
+.cta-content {
+    padding: 4rem 2rem;
+}
+
+.cta-section h2 {
+    font-size: var(--font-size-4xl);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.cta-section p {
+    font-size: var(--font-size-xl);
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.download-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.download-btn {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--transition);
+    min-width: 200px;
+}
+
+.download-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.download-btn i {
+    font-size: 2rem;
+}
+
+.download-btn div {
+    text-align: left;
+}
+
+.download-text {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+}
+
+.download-store {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+}
+
+.trust-indicators {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.trust-item i {
+    color: var(--accent-color);
+}
