@@ -1,0 +1,117 @@
+/* ===== RESPONSIVE STYLES ====== */
+
+/* Mobile First Approach */
+
+/* Extra Small devices (phones, 320px and up) */
+@media (max-width: 480px) {
+    :root {
+        --container-padding: 0 1rem;
+        --section-padding: 4rem 0;
+    }
+
+    /* Navigation */
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding-top: 80px;
+        min-height: 90vh;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 1rem 1.5rem;
+    }
+
+    .hero-stats {
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    /* Features Section */
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .feature-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Screenshots Section */
+    .screenshots-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .phone-frame {
+        width: 250px;
+        height: 500px;
+        padding: 15px;
+    }
+
+    .app-preview i {
+        font-size: 2rem;
+    }
+
+    /* Team Section */
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .team-card {
+        padding: 1.5rem;
+    }
+
+    .team-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .avatar-fallback {
+        font-size: 2rem;
+    }
+}
