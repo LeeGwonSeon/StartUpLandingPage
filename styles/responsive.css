@@ -170,4 +170,71 @@
     }
 
     /* Small devices (landscape phones, 481px and up */
+    @media (min-width: 481px) and (max-width: 767px) {
+        :root {
+            --container-padding: 0 1.5rem;
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: none;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+        }
+
+        /* Hero Section */
+        .hero-title {
+            font-size: 3rem;
+        }
+
+        .hero-buttons {
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        /* Features Section */
+        .features-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Screenshots Section */
+        .screenshots-container {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .phone-frame {
+            width: 280px;
+            height: 560px;
+        }
+
+        /* Team Section */
+        .team-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        /* CTA Section */
+        .download-buttons {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        .footer-main {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 }
