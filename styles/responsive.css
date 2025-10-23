@@ -237,4 +237,76 @@
             grid-template-columns: repeat(2, 1fr);
         }
     }
+
+    /* Medium devices (tablets, 768px and up */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero-stats {
+            gap: 3rem;
+        }
+
+        /* Features-grid */
+        .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* Screenshots Section */
+        .screenshots-container {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .phone-frame {
+            width: 300px;
+            height: 600px;
+        }
+
+        .feature-highlights {
+            align-items: flex-start;
+        }
+
+        /* Team Section */
+        .team-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* CTA Section */
+        .download-buttons {
+            flex-direction: row;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        .footer-main {
+            grid-template-columns: 1fr, 2fr;
+            text-align: left;
+        }
+
+        .footer-links {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .footer-brand {
+            text-align: left;
+        }
+
+        .footer .social-links {
+            justify-content: flex-start;
+        }
+    }
 }
