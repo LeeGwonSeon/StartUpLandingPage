@@ -376,4 +376,11 @@
             gap: 2rem;
         }
     }
+
+    /* Ultra Wide devices (1400px and up) */
+    @media (min-width: 1400px) {
+        :root {
+            --container-max-width: 1600px;
+        }
+    }
 }
