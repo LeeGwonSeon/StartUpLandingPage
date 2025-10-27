@@ -341,4 +341,39 @@
             gap: 1.5rem;
         }
     }
+
+    /* Extra Large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {
+        :root {
+            --container-max-width: 1400px;
+        }
+
+        /* Hero Section */
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .hero-stats {
+            gap: 4rem;
+        }
+
+        /* Features Section */
+        .features-grid {
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            padding: 3rem;
+        }
+
+        /* Team Section */
+        .team-card {
+            padding: 2.5rem;
+        }
+
+        /* CTA Section */
+        .download-buttons {
+            gap: 2rem;
+        }
+    }
 }
