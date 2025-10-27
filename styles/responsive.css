@@ -309,4 +309,36 @@
             justify-content: flex-start;
         }
     }
+
+    /* Large devices (desktops, 1024px and up */
+    @media (min-width: 1024px) {
+        /* Navigation */
+        .nav-links {
+            gap: 2rem;
+        }
+
+        /* Hero Section */
+        .hero-content {
+            max-width: 900px;
+        }
+
+        /* Screenshots Section */
+        .screenshots-container {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* CTA Section */
+        .download-buttons {
+            gap: 1.5rem;
+        }
+    }
 }
