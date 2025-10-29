@@ -457,4 +457,55 @@
             background: #f5f5f5 !important;
         }
     }
+
+    /* Reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+
+        .fade-in,
+        .fade-in-left,
+        .fade-in-right {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+    }
+
+    /* Dark mode support (if system preference changes) */
+    @media (prefers-color-scheme: light) {
+        /* Keep dark theme as default for this design */
+    }
+
+    /* High contrast mode */
+    @media (prefers-contrast: high) {
+        :root {
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --glass-border: rgba(255, 255, 255, 0.5);
+        }
+
+        .feature-card,
+        .team-card {
+            border: 2px solid var(--glass-border);
+        }
+
+        .btn {
+            border: 2px solid currentColor;
+        }
+    }
+
+    /* Focus visible for better accessibility */
+    @media (hover: hover) and (pointer: coarse) {
+        .btn:hover,
+        .feature-card:hover,
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+    }
 }
