@@ -508,4 +508,65 @@
             transform: translateY(-5px);
         }
     }
+
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+        .btn {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .social-links a {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .mobile-menu-toggle {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        /* Remove hover effects for touch devices */
+        .feature-card:hover,
+        .team-card:hover,
+        .btn:hover {
+            transform: none;
+        }
+    }
+
+    /* Specific breakpoints for common devices */
+
+    /* iPhone SE */
+    @media (max-width: 375px) {
+        .hero-title {
+            font-size: 2.2rem;
+        }
+
+        .download-btn {
+            min-width: 260px;
+        }
+    }
+
+    /* iPad */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .screenshots-container {
+            gap: 2rem;
+        }
+
+        .phone-frame {
+            width: 280px;
+            height: 560px;
+        }
+    }
+
+    /* Desktop */
+    @media (min-width: 1440px) {
+        .hero-title {
+            font-size: 5rem;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+        }
+    }
 }
