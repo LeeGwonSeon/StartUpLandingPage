@@ -79,3 +79,56 @@ function getElement(selector, all = false) {
         return null; // 에러 발생 시 null 반환
     }
 }
+
+/**
+ * 이벤트 리스너를 안전하게 추가합니다
+ * 
+ * addEventListener를 직접 사용하면 요소가 없을 때 에러가 발생합니다.
+ * 이 함수는 요소 존재 여부를 확인하고 안전하게 이벤트를 추가합니다.
+ * 
+ * @param {Element|string} element - 요소 또는 선택자
+ * @param {string} event - 이벤트 타입 ('click', 'scroll' 등)
+ * @param {Function} handler - 이벤트 핸들러 함수
+ * @param {Object} options - 이벤트 옵션
+ */
+
+function addEventListenerSafe(element, event, handler, options ={}) {
+    try {
+        // 문자열이면 요소 선택, 아니면 그대로 사용
+        const el = typeof element === 'string' ? getElement(element) : element;
+        if (el && typeof handler === 'function')  {
+            el.addEventListener(event, handler, options);
+        }
+    } catch (error) {
+        console.error('Error adding event listener:', error);
+    }
+}
+
+/**
+ * 요소가 화면(뷰포트)에 보이는지 확인합니다
+ * 
+ * 스크롤 애니메이션, 지연 로딩 등에 사용됩니다.
+ * 
+ * @param {Element} element - 확인할 요소
+ * @param {number} threshold - 가시성 임계값 (0-1, 0.1 = 10% 보이면 true)
+ * @returns {boolean} 화면에 보이면 true
+ * 
+ * 예시:
+ * if (isElementInViewport(card, 0.5)) {
+ *      card.classList.add('visible'); // 50% 이상 보이면 visible 클래스 추가
+ * }
+ */
+function isElementInViewport(element, threshold = 0.1) {
+    if (!element) return false;
+
+    const rect = element.getBoundingClientRect(); // 요소의 위치와 크기 정보
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+    // 수직으로 화면에 보이는지
+    const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height * threshold) >= 0);
+    // 수평으로 화면에 보이는지
+    const horInView = (rect.left <= windowWidth) && ((rect.left + rect.width * threshold) >= 0);
+
+    return vertInView && horInView; // 둘 다 true여야 보이는 것
+}
