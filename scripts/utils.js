@@ -132,3 +132,61 @@ function isElementInViewport(element, threshold = 0.1) {
 
     return vertInView && horInView; // 둘 다 true여야 보이는 것
 }
+
+/**
+ * 특정 요소로 부드럽게 스크롤합니다
+ * 
+ * 네비게이션 메뉴 클릭 시 해당 섹션으로 부드럽게 이동하는 효과를 만듭니다.
+ * 브라우저 기본 스크롤보다 더 세밀한 제어가 가능합니다.
+ * 
+ * @param {Element|string} target - 이동할 요소 또는 선택자
+ * @param {number} offset - 목표 위치에서 추가로 이동할 거리 (음수 가능)
+ * @param {number} duration - 애니메이션 지속 시간 (밀리초)
+ * 
+ * 예시:
+ * smoothScrollTo('#features', 80, 1000);
+ * -> #features 섹션으로 1초에 걸쳐 스크롤, 상단에서 80px 띄움 (네비바 높이 고려)
+ */
+function smoothScrollTo(target, offset = 0, duration = 800) {
+    const element = typeof target === 'string' ? getElement(target) : target;
+    if (!element) return;
+
+    const targetPosition = element.offsetTop - offset; // 목표 위치 계산
+    const startPosition = window.pageYOffset; // 현재 스크롤 위치
+    const distance = targetPosition - startPosition; // 이동해야 할 거리
+    let starTime = null;
+
+    // 애니메이션 프레임마다 실행되는 함수
+    function animation(currentTime) {
+        if (starTime === null) starTime = currentTime;
+        const timeElapsed = currentTime - starTime; // 경과 시간
+        const run = ease(timeElapsed, startPosition, distance, duration); // 이징 적용
+        window.scrollTo(0, run); // 스크롤 이동
+        if (timeElapsed < duration) requestAnimationFrame(animation); // 계속 실행
+    }
+
+    // easeInOutQuad 이징 함수 - 처음과 끝이 부드러운 곡선
+    function ease(t, b, c, d) {
+        t /= d / 2;
+        if(t < 1) return c / 2 * t * t + b; // 가속
+        t--;
+        return -c / 2 * (t * (t - 2) -1 ) + b; //감속
+    }
+
+    requestAnimationFrame(animation); // 애니메이션 시작
+}
+
+/** 
+ * 고유한 ID를 생성합니다
+ * 
+ * 동적으로 생성디ㅗ는 요소에 고유한 ID를 부여할 때 사용합니다.
+ * 
+ * @param {string} prefix - ID 접두사
+ * @returns {string} 고유 ID
+ * 
+ * 예시:
+ * const id = generateId('model'); // "modal-1609459200000-abc123"
+ */
+function generateId(prefix = 'id') {
+    return `${prefix}-${Data.now()}-${Math.random().toString(36).substring(2, 9)}`;
+}
