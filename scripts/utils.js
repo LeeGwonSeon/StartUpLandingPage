@@ -179,7 +179,7 @@ function smoothScrollTo(target, offset = 0, duration = 800) {
 /** 
  * 고유한 ID를 생성합니다
  * 
- * 동적으로 생성디ㅗ는 요소에 고유한 ID를 부여할 때 사용합니다.
+ * 동적으로 생성되는 요소에 고유한 ID를 부여할 때 사용합니다.
  * 
  * @param {string} prefix - ID 접두사
  * @returns {string} 고유 ID
@@ -189,4 +189,55 @@ function smoothScrollTo(target, offset = 0, duration = 800) {
  */
 function generateId(prefix = 'id') {
     return `${prefix}-${Data.now()}-${Math.random().toString(36).substring(2, 9)}`;
+}
+
+/**
+ * 숫자를 천 단위로 쉼표를 추가하여 포맷팅합니다
+ * 
+ * @param {number} num - 포맷팅할 숫자
+ * @returns {string} 포맷된 문자열
+ * 
+ * 예시:
+ * formatNumber(1000000); // "1,000,000"
+ */
+function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+/**
+ * 모바일 디바이스인지 확인합니다
+ * 
+ * 모바일과 데스크톱에서 다른 동작을 구현할 때 사용합니다.
+ * 예: 모바일에서는 호버 효과 비활성화
+ * 
+ * @returns {boolean} 모바일이면 true
+ */
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+/**
+ * 터치 디바이스인지 확인합니다
+ * 
+ * 터치 이벤트를 지원하는 디바이스인지 확인합니다.
+ * 최근 노트북도 터치를 지원하므로 isMobile()과 다릅니다.
+ * 
+ * @returns {boolean} 터치를 지원하면 true
+ */
+function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
+
+/**
+ * 현재 뷰포트(화면) 크기를 반환합니다
+ * 
+ * 반응형 동작을 구현할 때 사용합니다.
+ * 
+ * @returns {Object} {width: 숫자, height: 숫자}
+ */
+function getViewportSize() {
+    return {
+        width: Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0),
+        height: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+    };
 }
