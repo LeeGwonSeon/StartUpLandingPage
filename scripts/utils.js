@@ -241,3 +241,67 @@ function getViewportSize() {
         height: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
     };
 }
+
+/**
+ * 사용자가 애니메이션 감소를 선호하는지 확인합니다
+ * 
+ * 접근성 설정에서 "애니메이션 줄이기"를 켠 사용자를 위한 것입니다.
+ * 멀미를 유발할 수 있는 애니메이션을 비활성화해야합니다.
+ * 
+ * @returns {boolean} 애니메이션 감소를 선호하면 true
+ * 
+ * 예시:
+ * if (prefersReducedMotion()) {
+ *      // 애니메이션 없이 즉시 표시
+ * } else {
+ *      // 부드러운 애니메이션 적용
+ * }
+ */
+function prefersReducedMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+/**
+ * 현재 스크롤 위치를 반환합니다
+ * 
+ * @returns {Object} {x: 가로 스크롤, y: 세로 스크롤}
+ */
+function getScrollPosition() {
+    return {
+        x: window.pageXOffset || document.documentElement.scrollLeft,
+        y: window.pageYOffset || document.documentElement.scrollTop
+    };
+}
+
+/**
+ * 요소가 실제로 보이는지 확인합니다
+ * 
+ * display: none, visibility: hidden, opacity: 0인 요소는 false 반환
+ * 
+ * @param {Element} element - 확인할 요소
+ * @returns {boolean} 보이면 true
+ */
+function isVisible(element) {
+    if (!element) return false;
+    const style = window.getComputedStyle(element);
+    return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
+}
+
+/**
+ * 지정된 시간만큼 대기하는 Promise를 반환합니다
+ * 
+ * async/await과 함께 사용하여 지연 시간을 만듭니다.
+ * 
+ * @param {number} ms - 대기 시간 (밀리초)
+ * @returns {Promise} Promise
+ * 
+ * 예시:
+ * async function showMessage() {
+ *      alert('첫 번째');
+ *      await wait(1000); // 1초 대기
+ *      alert ('두 번째');
+ * }
+ */
+function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
