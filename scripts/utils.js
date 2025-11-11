@@ -305,3 +305,63 @@ function isVisible(element) {
 function wait(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+/**
+ * 요소의 속성을 애니메이션합니다
+ * 
+ * CSS transition 없이 JavaScript로 부드러운 애니메이션을 만듭니다.
+ * 
+ * @param {Element} element - 애니메이션할 요소
+ * @param {Object} properties - 애니메이션할 속성들 {opacity: 1, left: '100px'}
+ * @param {number} duration - 지속 시간 (밀리초)
+ * @returns {Promise} 애니메이션 완료 시 resolve되는 Promise
+ */
+function animate(element, properties, duration = 300) {
+    return new Promise(resolve => {
+        // 애니메이션 감소 설정이면 즉시 완료
+        if (!element || prefersReducedMotion()) {
+            Object.keys(properties).forEach(prop => {
+                element.style[prop] = properties[prop];
+            });
+            resolve();
+            return;
+        }
+
+        const startValues = {}; // 시작 값 저장
+        const endValues = properties // 목표 값
+
+        // 각 속성의 현재 값을 가져옴
+        Object.keys(properties).forEach(prop => {
+            startValues[prop] = parseFloat(getComputedStyle(element)[prop]) || 0;
+        });
+
+        let startTime = null;
+
+        // 애니메이션 프레임마다 실행
+        function animationStep(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const progress = Math.min(timeElapsed / duration, 1); // 0~1 사이 값
+
+            // ease-out 이징 적용 (점점 느려짐)
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+            // 각 속성을 부드럽게 변경
+            Object.keys(properties).forEach(prop => {
+                const startValue = startValues[prop];
+                const endValue = parseFloat(endValues[prop]);
+                const currentValue = startValue + (endValue - startValue) * easedProgress;
+                element.style[prop] = currentValue + (prop.includes('opacity') ? '' : 'px');
+            });
+
+            // 애니메이션이 끝나지 않았으면 계속 실행
+            if (progress < 1) {
+                requestAnimationFrame(animationStep);
+            } else {
+                resolve(); // 완료되면 Promise resolve
+            }
+        }
+
+        requestAnimationFrame(animationStep); // 애니메이션 시작
+    })
+}
