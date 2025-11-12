@@ -363,5 +363,43 @@ function animate(element, properties, duration = 300) {
         }
 
         requestAnimationFrame(animationStep); // 애니메이션 시작
-    })
+    });
+}
+
+/**
+ * 텍스트를 클립보드에 복사합니다
+ * 
+ * 최신 Clipboard API를 사용하고, 지원하지 않는 브라우저는 폴백 방식 사용
+ * 
+ * @param {string} text - 복사할 텍스트
+ * @returns {Promise<boolean>} 성공하면 true
+ * 
+ * 예시:
+ * const success = await copyToClipboard('복사할 내용');
+ * if (success) alert('복사 완료!);
+ */
+async function copyToClipboard(text) {
+    try {
+        // 최신 방식 (HTTPS 필요)
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return true;
+        } else {
+            // 구형 브라우저용 폴백
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            const result = document.execCommand('copy'); // 구식 방법
+            textArea.remove();
+            return result;
+        }
+    } catch (error) {
+        console.error('Failed to copy text:', error);
+        return false;
+    }
 }
