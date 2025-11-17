@@ -403,3 +403,67 @@ async function copyToClipboard(text) {
         return false;
     }
 }
+
+/**
+ * localStorage 헬퍼 객체
+ * 
+ * localStorage를 더 쉽고 안전하게 사용할 수 있게 해줍니다.
+ * JSON 자동 변환, 에러 처리 포함
+ */
+const storage = {
+    /**
+     * locaaStorage에서 값을 가져옵니다
+     * @param {string} key - 키
+     * @param {*} defaultValue - 값이 없을 때 반환할 기본값
+     */
+    get(key, defaultValue = null) {
+        try {
+            const item = localStorage.getItem(key);
+            return item ? JSON.parse(item) : defaultValue; // JSON 피싱
+        } catch (error) {
+            console.error('Error getting from localStorage:', error);
+            return defaultValue;
+        }
+    },
+
+    /**
+     * localStorage에 값ㅇ르 저장합니다
+     * @param {string} key - 키
+     * @param {*} value - 저장할 값 (객체도 가능)
+     */
+    set(key, value) {
+        try {
+            localStorage.setItem(key, JSON.stringify(value)); // JSON으로 변환
+            return true;
+        } catch (error) {
+            console.error('Error setting to localStorage:', error);
+            return false;
+        }
+    },
+
+    /**
+     * localStorage에서 값을 삭제합니다
+     */
+    remove(key) {
+        try {
+            localStorage.removeItem(key);
+            return true;
+        } catch (error) {
+            console.error('Error removing from localStorage:', error);
+            return false;
+        }
+    },
+
+    /**
+     * localStorage를 완전히 비웁니다
+     */
+    clear() {
+        try {
+            localStorage.clear();
+            return true;
+        } catch (error) {
+            console.error('Error clearing localStorage:', error);
+            return false;
+        }
+    }
+};
