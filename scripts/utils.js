@@ -467,3 +467,55 @@ const storage = {
         }
     }
 };
+
+/**
+ * URL 파라미터 헬퍼 객체
+ * 
+ * URL의 쿼리 스트링(?key=value)을 쉽게 다룰 수 있게 해줍니다.
+ * 
+ * 예시:
+ * // URL이 https://example.com?name=John&age=30 일 때
+ * urlParams.get('name'); // "John"
+ * urlParams.set('city', 'Seoul'); // URL에 &city=Seoul 추가
+ */
+const urlParams = {
+    /**
+     * URL 파라미터 값을 가져옵니다
+     */
+    get(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    },
+
+    /**
+     * URL 파라미터를 설정합니다 (페이지 새로고침 없이)
+     */
+    set(param, value) {
+        const url = new URL(window.location);
+        url.searchParams.set(param, value);
+        window.history.pushState({}, '', url); // URL 변경 (새로고침 없이)
+    },
+
+    /**
+     * URL 파라미터를 제거합니다
+     */
+    remove(param) {
+        const url = new URL(window.location);
+        url.searchParams.delete(param);
+        window.history.pushState({}, '', url);
+    },
+
+    /**
+     * 모든 URL 파라미터를 객체로 반환합니다
+     * @returns {Object} {key1: value1, key2: value2, ...}
+     */
+    getAll() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const params = {};
+        for (const [key, value] of urlParams) {
+            params[key] = value;
+        }
+        return params;
+    }
+};
+
