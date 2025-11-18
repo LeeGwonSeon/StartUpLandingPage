@@ -105,6 +105,21 @@ function addEventListenerSafe(element, event, handler, options ={}) {
 }
 
 /**
+ * 이벤트 리스너를 안전하게 제거합니다
+ * 메모리 누수를 방지하기 위해 사용하지 않는 이벤트 리스너는 제거해야 합니다.
+ */
+function removeEventListnerSafe(element, event, handler) {
+    try {
+        const el = typeof element === 'string' ? getElement(element) : element;
+        if (el && typeof handler === 'function') {
+            el.removeEventListner(event, handler);
+        } 
+    } catch (error) {
+            console.error('Error removing event listener:', error);
+    }
+}
+
+/**
  * 요소가 화면(뷰포트)에 보이는지 확인합니다
  * 
  * 스크롤 애니메이션, 지연 로딩 등에 사용됩니다.
@@ -519,3 +534,28 @@ const urlParams = {
     }
 };
 
+// Node.js 환경에서 사용할 수 있도록 export (브라우저에서는 무시됨)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        debounce,
+        throttle,
+        getElement,
+        addEventListenerSafe,
+        removeEventListnerSafe,
+        isElementInViewport,
+        smoothScrollTo,
+        generateId,
+        formatNumber,
+        isMobile,
+        isTouchDevice,
+        getViewportSize,
+        prefersReducedMotion,
+        getScrollPosition,
+        isVisible,
+        wait,
+        animate,
+        copyToClipboard,
+        storage,
+        urlParams
+    };
+}
