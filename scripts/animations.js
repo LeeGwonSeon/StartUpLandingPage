@@ -40,4 +40,37 @@ class AnimationManager {
         this.setupScrollAnimations(); // 네비바 스크롤 효과
         this.setupCounterAnimations(); // 숫자 카운팅 애니메이션
     }
+
+    /**
+     * Intersection Observer 설정
+     * 
+     * Intersection Observer란?
+     * - 요소가 화면에 보이는지 감시하는 최신 브라우저 API
+     * - 기존 scroll 이벤트보다 훨씬 성능이 좋음 (네이티브 최적화)
+     * 
+     * 왜 사용하나?
+     * scroll 이벤트는 초당 60번 발생 -> 성능 저하
+     * Intersection Observer는 필요할 때만 실행 -> 성능 우수
+     */
+    setupIntersectionObserver() {
+        const options = {
+            threshold: 0.1, // 요소의 10%가 보이면 트리거
+            rootMargin: '0px 0px -50px 0px' // 화면 하단에서 50px 전에 미리 트리거
+            // -> 사용자가 보기 전에 미리 애니메이션 시작해서 더 자연스러움
+        };
+
+        // Observer 생성
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // 요소가 화면에 들어왔고, 이직 애니메이션 안 했으면
+                if (entry.isIntersection && !this.animatedElements.has(entry.target)) {
+                    this.animatedElement(entry.target); // 애니메이션 시작
+                    this.animatedElements.add(entry.target); // 중복 방지용 기록
+                }
+            });
+        }, options);
+
+        // 페이지의 모든 .fade-in 요소들을 찾아서 감시 시작
+        this.observeFadeElements();
+    }
 }
