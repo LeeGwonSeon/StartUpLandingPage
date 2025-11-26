@@ -71,6 +71,6 @@ class AnimationManager {
         }, options);
 
         // 페이지의 모든 .fade-in 요소들을 찾아서 감시 시작
-        this.observeFadeElements(); 
+        this.observeFadeElements();
     }
 }
